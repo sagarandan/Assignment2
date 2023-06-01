@@ -1,0 +1,131 @@
+Ans1
+
+public class Solution {
+    public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int result = 0;
+        for (int i = 0; i < nums.length; i += 2) {
+            result += nums[i];
+        }
+        return result;
+    }
+}
+
+
+Ans2
+
+class Solution 
+{
+public:
+    // int distributeCandies(vector<int>& candyType)
+    int distributeCandies(vector<int> &m_candyType) 
+    {
+        sort(m_candyType.begin(), m_candyType.end());
+        
+        int result = 1; // the first candy must be valid
+        for(int i = 1; i < m_candyType.size() && result < m_candyType.size() / 2; i++)
+        {
+            if(m_candyType[i] > m_candyType[i - 1])
+                result++;
+        }
+        
+        return result;
+    }
+};
+
+Ans3
+
+const findLHS = (nums) => {
+    const hash = new Map()
+    let vals = []
+    let min = nums[0], max = nums[0]
+    for (let num of nums) {
+        //logic for finding min and max in range is flawed
+        min = min + max === 1 ? Math.min(min, num) : min
+        max = max - min === 1 ? Math.max(max, num) : max
+        hash.set(num, (hash.get(num) || 0) + 1)
+        console.log(max);
+    }
+
+    //logic is flawed below
+    for (let key of nums) {
+        // if (hash.has(key + 1) && hash.has(key + 1) <= max) {
+        //     vals.push(hash.get(key + 1))
+        // }
+        if (hash.has(key) === min || hash.has(key) === max) {
+            vals.push(min) || vals.push(max)
+        }
+    }
+    return vals
+}
+
+Ans4
+
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        int size = flowerbed.size();
+        int i = 0;
+        while(i < size && flowerbed[i] == 0) ++i;
+        n -= i == size ? (i + 1) / 2 : i / 2;
+        while(i < size){
+            int j = i + 1;
+            while(j < size && flowerbed[j] == 0) ++j;
+            n -= j == size ? (j - i - 1) / 2 : (j - i - 2) / 2;
+            if(n <= 0) return true;
+            i = j;
+        }
+        return n <= 0;
+    }
+};
+
+Ans5
+
+class Solution(object):
+    def maximumProduct(self, nums):
+        nums.sort()
+        if nums[0]<0 and nums[1]<0 and abs(nums[1])>=nums[-2]:
+            res=nums[0]*nums[1]*nums[-1]
+        else:
+            res=nums[-1]*nums[-2]*nums[-3]
+        return res
+
+Ans6
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l = 0
+        r = len(nums)-1
+ 
+        while l<=r:
+            m = l + (r-l)//2
+            if nums[m]>target:
+                r=m-1
+            elif nums[m]<target:
+                l=m+1
+            else:
+                return m
+        return -1
+
+An7
+var isMonotonic = function(A) {
+    let increasing = true 
+    let decreasing = true
+    
+    for(let i = 0; i < A.length; i++){
+        
+        if(A[i] > A[i+1]){
+            increasing = false 
+        }
+        
+        if(A[i] < A[i+1]){
+            decreasing = false
+        }
+        
+    }
+    
+    return increasing || decreasing 
+};
+
+Ans8
+
